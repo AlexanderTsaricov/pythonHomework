@@ -1,0 +1,22 @@
+[
+    {
+        "name": "John Doe",
+        "age": 20,
+        "grades": [90, 85, 88]
+    },
+    {
+        "name": "Alice Johnson",
+        "age": 22,
+        "grades": [78, 81, 79]
+    },
+    {
+        "name": "Bob Smith",
+        "age": 19,
+        "grades": [92, 88, 91]
+    },
+    {
+        "name": "Charlie Brown",
+        "age": 21,
+        "grades": [84, 85, 86]
+    }
+]

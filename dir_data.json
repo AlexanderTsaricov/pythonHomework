@@ -1,0 +1,62 @@
+{
+    "name": "testDir",
+    "files": [
+        {
+            "name": "test1.txt",
+            "size": 0
+        },
+        {
+            "name": "test2.txt",
+            "size": 0
+        },
+        {
+            "name": "test3.txt",
+            "size": 0
+        },
+        {
+            "name": "test4.txt",
+            "size": 0
+        },
+        {
+            "name": "test5.py",
+            "size": 0
+        }
+    ],
+    "subdirectory": [
+        {
+            "name": "testDir2",
+            "files": [
+                {
+                    "name": "test21.txt",
+                    "size": 9
+                },
+                {
+                    "name": "test22.txt",
+                    "size": 0
+                },
+                {
+                    "name": "test23.txt",
+                    "size": 0
+                }
+            ],
+            "subdirectory": [
+                {
+                    "name": "testDir3",
+                    "files": [
+                        {
+                            "name": "test31.txt",
+                            "size": 6
+                        }
+                    ],
+                    "subdirectory": [],
+                    "parent": "testDir2",
+                    "size": 0
+                }
+            ],
+            "parent": "testDir",
+            "size": 4096
+        }
+    ],
+    "parent": "No",
+    "size": 4096
+}

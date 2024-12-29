@@ -1,0 +1,14 @@
+[
+    {
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "age": 35,
+        "position": "Designer"
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "Brown",
+        "age": 45,
+        "position": "CTO"
+    }
+]

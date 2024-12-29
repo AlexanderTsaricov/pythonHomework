@@ -1,0 +1,32 @@
+[
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "age": 30,
+        "position": "Software Engineer"
+    },
+    {
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "age": 28,
+        "position": "Project Manager"
+    },
+    {
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "age": 35,
+        "position": "Designer"
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "Brown",
+        "age": 45,
+        "position": "CTO"
+    },
+    {
+        "first_name": "Charlie",
+        "last_name": "Davis",
+        "age": 40,
+        "position": "HR Manager"
+    }
+]
