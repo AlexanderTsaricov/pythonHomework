@@ -1,5 +1,6 @@
 # Task 1
-from unittest.mock import right
+from abc import ABC, abstractmethod
+import math
 
 
 class MatrixDimensionError(Exception):
@@ -346,7 +347,7 @@ class Rectangle:
     def __repr__(self):
         return f'Rectangle({self.width}, {self.height})'
 
-def task_2():
+def task_3():
     rect1 = Rectangle(5, 10)
     rect2 = Rectangle(3, 7)
     print(f"Периметр rect1: {rect1.perimeter()}")
@@ -361,3 +362,159 @@ def task_2():
     print(f"Ширина rect4: {rect4.width}")
 
 # Task 4
+class Stack:
+    def __init__(self, stackData: list):
+        self.__stackData = stackData
+
+    def add(self, data):
+        self.__stackData.append(data)
+
+    def out(self):
+        return self.__stackData.pop(-1)
+
+
+class TaskManager:
+    def __init__(self):
+        self.tasks = {}
+
+    def newTask(self, newTask: str, priority: int):
+        if self.tasks.get(priority) != None:
+            self.tasks[priority] = f'{self.tasks[priority]}\n{newTask}'
+        else:
+            self.tasks[priority] = newTask
+        print(self.tasks)
+
+    def __str__(self):
+        sortedList = [None] * len(self.tasks)
+        for key, value in self.tasks.items():
+            if len(sortedList) - 1 < key:
+                sortedList.append(value)
+            elif sortedList[key] != None:
+                if len(sortedList) - 1 < key + 1:
+                    if sortedList[key + 1] == None:
+                        sortedList[key + 1] = value
+                    else:
+                        temp = []
+                        for i in range(key + 1, len(sortedList)):
+                            temp.append(sortedList[i])
+                        for i, item in zip(range(key + 2, len(sortedList) + 1), temp):
+                            if i > len(sortedList) - 1:
+                                sortedList.append(item)
+                            else:
+                                sortedList[i] = item
+                        sortedList[key + 1] = value
+                else:
+                    sortedList.append(value)
+            else:
+                sortedList[key] = value
+        resultStr = ''
+        for item in sortedList:
+            if item != None:
+                resultStr += f'{item}\n'
+        return resultStr
+
+def task_4():
+    manager = TaskManager()
+    manager.newTask("сделать уборку", 4)
+    manager.newTask("помыть посуду", 4)
+    manager.newTask("отдохнуть", 1)
+    manager.newTask("поесть", 2)
+    manager.newTask("сдать ДЗ", 2)
+    print(manager)
+
+# Task 5
+class Shape(ABC):
+    _pi = 3.14
+    @abstractmethod
+    def area(self):
+        pass
+class Circle(Shape):
+    def __init__(self, rad):
+        self.rad = rad
+
+    def diametr(self):
+        return self.rad * 2
+
+    def circumference(self):
+        return 2 * self._pi * self.rad
+
+    def area(self):
+        return self._pi * (self.rad * self.rad)
+
+
+class Rectangle_2(Shape):
+    def __init__(self, width, height = None):
+        self.width = width
+        if height == None:
+            self.height = width
+        else:
+            self.height = height
+
+    def area(self):
+        """
+        Method for calculating the area of a rectangle
+        :return: int
+        """
+        return self.width * self.height
+
+    def perimeter(self):
+        """
+        Method for calculating the perimeter of a rectangle
+        :return: int
+        """
+        return 2 * (self.height + self.width)
+
+    def __add__(self, other):
+        return Rectangle(self.width + other.width, self.height + other.height)
+
+    def __sub__(self, other):
+        return Rectangle(self.width - other.width, self.height - other.height)
+
+    def __lt__(self, other):
+        return self.area() < other.area()
+
+    def __eq__(self, other):
+        return self.area() == other.area()
+
+    def __le__(self, other):
+        return self.area() <= other.area()
+
+    def __str__(self):
+        return f'Прямоугольник со сторонами {self.width} и {self.height}'
+
+    def __repr__(self):
+        return f'Rectangle({self.width}, {self.height})'
+
+class Triangle(Shape):
+    def __init__(self, size_a, size_b, size_c = None):
+        self.size_a = size_a
+        self.size_b = size_b
+        if size_c != None:
+            self.size_c = size_c
+        else:
+            self.size_c = size_b
+
+    def semiperimeter(self):
+        return (self.size_a + self.size_b + self.size_c) / 2
+
+    def area(self):
+        semiper = self.semiperimeter()
+        return math.sqrt(semiper*((semiper - self.size_a) * (semiper - self.size_b) * (semiper - self.size_c)))
+
+# Создание экземпляров классов
+circle = Circle(5)
+rectangle = Rectangle(4, 6)
+triangle = Triangle(3, 8)
+# Вычисление площади фигур
+circle_area = circle.area()
+rectangle_area = rectangle.area()
+triangle_area = triangle.area()
+# Вывод результатов
+print("Площадь круга:", circle_area)
+print("Площадь прямоугольника:", rectangle_area)
+print("Площадь треугольника:", triangle_area)
+# Попытка создания экземпляра абстрактного класса Shape (должновызвать ошибку)
+try:
+    shape = Shape() # Ожидается ошибка
+except TypeError as e:
+    print(f"Ошибка: {e}")
